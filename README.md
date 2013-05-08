@@ -1,7 +1,7 @@
 Yesod-ToDoMVC
 =============
 
-A ToDoList in Yesod for the [ToDoMVC Project](http://todomvc.com/)
+A [ToDoList](http://f.cl.ly/items/181O1k2f1t3Z0T1n0R06/Screen%20Shot%202013-05-08%20at%2012.25.45%20AM.png) in [Yesod](http://www.yesodweb.com/) for the [ToDoMVC Project](http://todomvc.com/)
 
 
 * Yesod Basics
