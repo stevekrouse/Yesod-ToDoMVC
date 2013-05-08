@@ -18,9 +18,9 @@ there all to no avail). Eventually, I was forced to hardcode the templates mysel
 
 * Fay Proof-Of-Concept
   * I don't have enough time now to refactor our all of the todo persistance, editing and display
-logic. However, as a proof-of-concept, I refactored out all of the logic of the "renderFooter"
-function of the JQuery ToDoMVC example into fay.hs. And then I replaced all calls to renderFooter
-in homepage.julis with calls to my new fay code, "main._(main.Test_Fay$main)". Not so pretty, but
+logic. However, as a proof-of-concept, I refactored out all of the logic of the `renderFooter`
+function of the JQuery ToDoMVC example into `fay.hs`. And then I replaced all calls to `renderFooter`
+in `homepage.julis` with calls to my new fay code, `main._(main.Test_Fay$main)`. Not so pretty, but
 it works.
 
 Notes
@@ -30,5 +30,5 @@ I played around with sessions a bit, but didn't get a chance to put the knowledg
 However, I left the code in place, just commented out, to display my progess.
 
 Also, I wasn't able to figure out how to reference local javascript files (that aren't widget-ed julius)
-so I just [hosted my compiled fay.js file on cloud.app](http://f.cl.ly/items/0Y2C203Q18170u460Q1v/fay.js) and referenced it remotely (as my main-man [Michael
+so I just hosted my compiled [`fay.js`](http://f.cl.ly/items/0Y2C203Q18170u460Q1v/fay.js) file on cloud.app and referenced it remotely (as my main-man [Michael
 Snoyman](http://www.yesodweb.com/blog/2013/01/adding-css-js) reccomends).
