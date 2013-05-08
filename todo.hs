@@ -38,8 +38,12 @@ getHomeR = defaultLayout $ do
                               fromJust <$> lookupSession "items" :: GHandler s m
                                                                     [Item])
              -}
+             --JQuery
              addScriptRemote "http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+             --Handlebars
              addScriptRemote "http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js"
+             --My Fay file compiled and hosted
+             addScriptRemote "http://f.cl.ly/items/0Y2C203Q18170u460Q1v/fay.js"
              $(widgetFile "homepage")            
 
 {-

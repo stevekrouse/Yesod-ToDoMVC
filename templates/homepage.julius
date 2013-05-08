@@ -55,7 +55,6 @@ jQuery(function ($) {
 		},
 		cacheElements: function () {
 			this.todoTemplate = Handlebars.compile(this.todoTemp);
-			this.footerTemplate = Handlebars.compile(this.footerTemp);
 			this.$todoApp = $('#todoapp');
 			this.$newTodo = $('#new-todo');
 			this.$toggleAll = $('#toggle-all');
@@ -80,20 +79,8 @@ jQuery(function ($) {
 			this.$todoList.html(this.todoTemplate(this.todos));
 			this.$main.toggle(!!this.todos.length);
 			this.$toggleAll.prop('checked', !this.activeTodoCount());
-			this.renderFooter();
+			main._(main.Test_Fay$main);
 			Utils.store('todos-jquery', this.todos);
-		},
-		renderFooter: function () {
-			var todoCount = this.todos.length;
-			var activeTodoCount = this.activeTodoCount();
-			var footer = {
-				activeTodoCount: activeTodoCount,
-				activeTodoWord: Utils.pluralize(activeTodoCount, 'item'),
-				completedTodos: todoCount - activeTodoCount
-			};
-
-			this.$footer.toggle(!!todoCount);
-			this.$footer.html(this.footerTemplate(footer));
 		},
 		toggleAll: function () {
 			var isChecked = $(this).prop('checked');

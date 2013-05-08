@@ -13,12 +13,11 @@ main = do
   let todoCount =  length todos
   let completedTodos = length $ filter isCompleted todos
   let activeTodoCount = todoCount - completedTodos
-  let activeTodoWord = "left"
-                          
+  let activeTodoWord = if activeTodoCount > 1 then " items " else " item "
+   
   footerToggle todoCount
-  --The following statement doesn't work. Trouble parsing JSON on the javascript
-  --side with single/double quotes.
-  setFooterHtml $ template $ fromJSON' $ toJSON (Footer activeTodoCount activeTodoWord completedTodos)
+  setFooterHtml $ toHTML (Footer activeTodoCount activeTodoWord completedTodos)
+                
   return ()
 
 alert :: String -> Fay ()
@@ -44,14 +43,28 @@ footerToggle = ffi "$('#todoapp').find('#footer').toggle(!!(%1))"
 
 setFooterHtml :: String -> Fay()
 setFooterHtml = ffi "$('#todoapp').find('#footer').html(%1)"
+
+{-
+Failed attempt at using Handlebars templates
                 
 template :: String -> String                
 template = ffi "Handlebars.compile($('#footer-template').html())(%1)"
-                
+-}
+
 data Footer = Footer Int String Int
 
-toJSON :: Footer -> String
-toJSON (Footer activeTodoCount activeTodoWord completedTodos)
-       = "\"{\\\"activeTodoCount\\\": "  ++ show activeTodoCount ++ ", " ++
-         "\\\"activeTodoWord\\\": \\\""  ++ activeTodoWord ++ "\\\", " ++
-         "\\\"completedTodos\\\": "    ++ show completedTodos ++ "}\""
+toHTML                     :: Footer -> String
+toHTML (Footer activeTodoCount activeTodoWord completedTodos)
+       |completedTodos > 0 =     "<span id=\"todo-count\">"
+                              ++   "<strong>" ++ show activeTodoCount ++ "</strong>"
+                              ++    activeTodoWord ++ "left"
+                              ++ "</span>"
+                              ++ "<button id=\"clear-completed\">"
+                              ++   "Clear completed (" ++ show completedTodos ++ ")"
+                              ++ "</button>"
+       |otherwise          =     "<span id=\"todo-count\">"
+                              ++   "<strong>" ++ show activeTodoCount ++ "</strong>"
+                              ++    activeTodoWord ++ "left"
+                              ++ "</span>"
+
+  
